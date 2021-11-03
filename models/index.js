@@ -8,43 +8,41 @@ const ProductTag = require("./ProductTag");
 Product.belongsTo(
   Category,
   // this is sus might need to make sure there is a foreign key???
-  // { foreignKey: "category_id" },
   {
-    through: {
-      model: Category,
-      unique: false,
-    },
+    //   through: {
+    //     model: Category,
+    //     unique: false,
+    //   },
 
-    as: "product_category",
+    foreignKey: "product_category",
   }
 );
 
 // Categories have many Products
 Category.hasMany(Product, {
-  through: {
-    model: Product,
-    unique: false,
-  },
-
-  as: "categories_of_products",
+  // through: {
+  //   model: Product,
+  //   unique: false,
+  // },
+  foreignKey: "categories_of_products",
 });
 
 // Products belongToMany Tags (through ProductTag)
 Product.belongsToMany(Tag, {
   through: {
-    model: Tag,
+    model: ProductTag,
     unique: false,
   },
-  as: "product_tags",
+  foreignKey: "product_tags",
 });
 
 // Tags belongToMany Products (through ProductTag)
 Tag.belongsToMany(Product, {
   through: {
-    model: Product,
+    model: ProductTag,
     unique: false,
   },
-  as: "tags_of_products",
+  foreignKey: "tags_of_products",
 });
 
 module.exports = {

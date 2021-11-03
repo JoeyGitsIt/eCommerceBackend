@@ -31,15 +31,16 @@ Product.init(
       defaultValue: 10,
       validate: true,
     },
-    category_id: {
-      type: DataTypes.INTEGER,
-      // this line is sus, could mess up stuff?????
-      references: {
-        model: "category",
-        key: "id",
-        unique: false,
-      },
-    },
+    // category_id: {
+    //   allowNull: false,
+    //   type: DataTypes.INTEGER,
+    //   this line is sus, could mess up stuff?????
+    //   references: {
+    //     model: "category",
+    //     key: "id",
+    //     unique: false,
+    //   },
+    // },
   },
   {
     sequelize,
